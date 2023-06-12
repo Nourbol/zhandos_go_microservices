@@ -4,7 +4,7 @@ import (
 	"flag"
 	jsonlog "github.com/nourbol/zhandos/pkg/logger"
 	"github.com/nourbol/zhandos/pkg/postgres"
-	deliveryHTTP "github.com/nourbol/zhandos/services/shelters/internal/delivery/http"
+	deliveryHTTP "github.com/nourbol/zhandos/services/breeds/internal/delivery/http"
 	"os"
 )
 
@@ -28,7 +28,7 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (development|staging|production)")
-	flag.StringVar(&cfg.db.dsn, "db-dsn", os.Getenv("ZHANDOS_SHELTERS_DB_DSN"), "PostgreSQL DSN")
+	flag.StringVar(&cfg.db.dsn, "db-dsn", os.Getenv("ZHANDOS_BREEDS_DB_DSN"), "PostgreSQL DSN")
 	flag.IntVar(&cfg.db.maxConns, "db-max-open-conns", 25, "PostgreSQL max open connections")
 	flag.StringVar(&cfg.db.maxIdleTime, "db-max-idle-time", "15m", "PostgreSQL max connection idle time")
 
