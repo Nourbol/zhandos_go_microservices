@@ -2,7 +2,7 @@ package http
 
 import (
 	"fmt"
-	"github.com/nourbol/zhandos/pkg/tools"
+	http2 "github.com/nourbol/zhandos/pkg/tools/http"
 	"net/http"
 )
 
@@ -14,8 +14,8 @@ func (d *Delivery) logError(r *http.Request, err error) {
 }
 
 func (d *Delivery) errorResponse(w http.ResponseWriter, r *http.Request, status int, message any) {
-	envelopedError := tools.Envelope{"error": message}
-	err := tools.WriteJSON(w, status, envelopedError, nil)
+	envelopedError := http2.Envelope{"error": message}
+	err := http2.WriteJSON(w, status, envelopedError, nil)
 	if err != nil {
 		d.logError(r, err)
 		w.WriteHeader(http.StatusInternalServerError)

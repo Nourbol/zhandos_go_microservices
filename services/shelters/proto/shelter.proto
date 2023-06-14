@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package shelter;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./;shelter";
+
+service ShelterService {
+  rpc CreateShelter (CreateShelterRequest) returns (CreateShelterResponse) {}
+  rpc UpdateShelter (UpdateShelterRequest) returns (ShelterResponse) {}
+  rpc DeleteShelter (DeleteShelterRequest) returns (DeleteShelterResponse) {}
+  rpc GetShelter (GetShelterRequest) returns (GetShelterResponse) {}
+  rpc GetShelters (GetSheltersRequest) returns (GetSheltersResponse) {}
+}
+
+message ShelterResponse {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  string name = 3;
+  repeated string ownedBreeds = 4;
+}
+
+message CreateShelterRequest {
+  string name = 1;
+  repeated string ownedBreeds = 2;
+}
+
+message UpdateShelterRequest {
+  string name = 1;
+  repeated string ownedBreeds = 2;
+}
+
+message UpdateShelterResponse {
+  ShelterResponse response = 1;
+}
+
+message CreateShelterResponse {
+  ShelterResponse response = 1;
+}
+
+message DeleteShelterRequest {
+  string id = 1;
+}
+
+message DeleteShelterResponse {
+  string id = 1;
+}
+
+message GetShelterRequest {
+  string id = 1;
+}
+
+message GetShelterResponse {
+  ShelterResponse response = 1;
+}
+
+message ShelterFilters {
+  int32 page = 1;
+  int32 pageSize = 2;
+  string sort = 3;
+  repeated string sortSafelist = 4;
+}
+
+message GetSheltersRequest {
+  string name = 1;
+  repeated string ownedBreeds = 2;
+  ShelterFilters filters = 3;
+}
+
+message GetSheltersResponse {
+  repeated ShelterResponse shelters = 1;
+}

@@ -1,11 +1,11 @@
-package tools
+package http
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
-	"github.com/nourbol/zhandos/pkg/validator"
+	"github.com/nourbol/zhandos/pkg/tools/validator"
 	"io"
 	"net/http"
 	"net/url"
